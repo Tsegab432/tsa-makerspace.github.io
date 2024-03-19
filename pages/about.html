@@ -1,0 +1,101 @@
+<!-- about.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="icon" type="../image/x-icon" href="/images/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TMSK Makerspace</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Hat+Display">
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <!-- This is the Navigation Bar code -->
+  <header class="header">
+    <a href="#" class="logo">TMSK Makerspace</a>
+
+    <nav class="navbar">
+      <a href="../index.html">Home</a>
+      <a href="membership.html">Membership</a>
+      <a href="contact.html">Contact</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="about.html">About</a>
+      <a href="equipment.html">Equipment</a>
+      <a href="references.html">References</a>
+    </nav>
+  </header>
+  <!-- End of the Navigation Bar code -->
+
+  <div class="about" id="about">
+    <div class="moveable">
+      <center><h1 class="aboutustext">About Us</h1></center>
+    </div>
+    <br>
+    <h2 class="aboutustext"><center>We are a makerspace that provides a safe and comfortable environment for students to learn and grow. We believe that education is the key to success! One again our makerspace wants you to bring your imagination to reality </center></h2>
+  </div>
+
+<!-- Dragging javascript code --> 
+  <script>
+    dragElement(document.getElementById("about"));
+
+    const boxElement = document.querySelector('.about');
+
+    boxElement.addEventListener('mousedown', function() {
+      boxElement.style.transition = '0.5s';
+      boxElement.style.opacity = '0.6';
+      boxElement.style.boxShadow = '15px 15px 5px rgba(5, 5, 5, 0.1)';
+    });
+
+    boxElement.addEventListener('mouseup', function() {
+       boxElement.style.opacity = '1';
+      boxElement.style.boxShadow = 'none';
+    });
+
+    function dragElement(elmnt) {
+      var pos1 = 0, pos3 = 0;
+      if (document.getElementById(elmnt.id + "header")) {
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+
+        elmnt.style.boxShadow = '15px 15px 5px rgba(5, 5, 5, 0.1)';
+      } else {
+        elmnt.onmousedown = dragMouseDown;
+      }
+
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos3 = e.clientX;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos3 = e.clientX;
+        
+        var minX = 0;
+        var maxX = window.innerWidth - elmnt.offsetWidth;
+        var newRight = Math.min(Math.max(minX, elmnt.offsetLeft - pos1));
+        var newLeft = Math.min(Math.max(minX, elmnt.offsetLeft - pos3));
+        
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.right = (elmnt.offsetLeft - pos3) + "px";
+      }
+
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+  </script>
+<!-- End of Dragging javascript code --> 
+
+
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!-- equipment.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="icon" type="../image/x-icon" href="/images/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TMSK Makerspace</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+  <link rel="stylesheet" 
+    href="https://fonts.googleapis.com/css?family=Red+Hat+Display">
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <!-- This is the Navigation Bar code -->
+  <header class="header">
+    <a href="#" class="logo">TMSK Makerspace</a>
+
+    <nav class="navbar">
+      <a href="../index.html">Home</a>
+      <a href="membership.html">Membership</a>
+      <a href="contact.html">Contact</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="about.html">About</a>
+      <a href="equipment.html">Equipment</a>
+      <a href="references.html">References</a>
+    </nav>
+  </header>
+  <!-- End of the Navigation Bar code -->
+  
+  <center>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+    <br>
+    <br>
+  <a href="../Copyright.pdf" download="Copyright-check-list">
+  <button class="submit" onclick="onbuttonclickcr()">Download the Copyright checklist</button>
+  </a>
+  <br>
+  <br>
+  <a href="../Work-log.pdf" download="Work-log">
+  <button class="submit" onclick="onbuttonclickwl()">Download the Work Log</button>
+  </a>
+  <br>
+  <br>
+  </center>
+  <div class="slideshow-container">
+
+  <div class="mySlides fade">
+    <object data="../Copyright.pdf" width="1000" height="500" type="application/pdf">
+    </object>
+    <div class="text" style="color: green;">Copyright Check list</div>
+  </div>
+
+  <div class="mySlides fade">
+    <object data="../Work-log.pdf" width="1000" height="500" type="application/pdf">
+    </object>
+    <div class="text" style="color: green;">Work Log</div>
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1)">❮</a>
+  <a class="next" onclick="plusSlides(1)">❯</a>
+
+  </div>
+  <br>
+
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span> 
+    <span class="dot" onclick="currentSlide(2)"></span> 
+  </div>
+
+  
+</body>
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+
+  function onbuttonclickcr(){
+    getElementsByClassName('submit').style.boxShadow = 'none';
+    alert("Downloaded");
+  }
+
+  function onbuttonclickwr(){
+    alert("Downloaded");
+  }
+  
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}    
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+  }
+
+  
+</script>
+
+</html>

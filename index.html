@@ -1,0 +1,109 @@
+<!-- index.html/ Home page -->
+<!doctype html>
+<html>
+  <head>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TMSK Makerspace</title>
+    <link
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Audiowide"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Red+Hat+Display"
+    />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+
+  <body>
+    <!-- This is the Navigation Bar code -->
+    <header class="header">
+      <a href="#" class="logo">TMSK Makerspace</a>
+
+      <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="pages/membership.html">Membership</a>
+        <a href="pages/contact.html">Contact</a>
+        <a href="pages/calendar.html">Calendar</a>
+        <a href="pages/about.html">About</a>
+        <a href="pages/equipment.html">Equipment</a>
+        <a href="pages/references.html">References</a>
+      </nav>
+
+
+      
+    </header>
+    <!-- End of the Navigation Bar code -->
+
+
+    <div class="hometitle" id="hometitle">
+      <br>
+      <br>
+      <br>
+      <h1>Welcome to the TMSK Makerspace</h1>
+      <br>
+      <br>
+      <h4>A place where you can turn your imaginations to reality.</h4>
+      <img src="images/logo.png" class="responsive-image" style="max-width: 100%; height: auto;">
+    </div>
+  </body>
+</html>
+<script>
+  dragElement(document.getElementById("hometitle"));
+
+  const boxElement = document.querySelector('.hometitle');
+
+  boxElement.addEventListener('mousedown', function() {
+    boxElement.style.transition = '0.5s';
+    boxElement.style.opacity = '0.6';
+    boxElement.style.boxShadow = '15px 15px 5px rgba(5, 5, 5, 0.1)';
+  });
+
+  boxElement.addEventListener('mouseup', function() {
+     boxElement.style.opacity = '1';
+    boxElement.style.boxShadow = 'none';
+  });
+
+  function dragElement(elmnt) {
+    var pos1 = 0, pos3 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+      document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+
+      elmnt.style.boxShadow = '15px 15px 5px rgba(5, 5, 5, 0.1)';
+    } else {
+      elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      e.preventDefault();
+      pos3 = e.clientX;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      pos1 = pos3 - e.clientX;
+      pos3 = e.clientX;
+
+      var minX = 0;
+      var maxX = window.innerWidth - elmnt.offsetWidth;
+      var newRight = Math.min(Math.max(minX, elmnt.offsetLeft - pos1));
+      var newLeft = Math.min(Math.max(minX, elmnt.offsetLeft - pos3));
+
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.right = (elmnt.offsetLeft - pos3) + "px";
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
+  }
+</script>
